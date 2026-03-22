@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daby2x.netlify.app/sitemap.xml

@@ -388,16 +388,17 @@ margin-bottom:20px;
 
 .problem-video{
 
-width:70px;
-height:70px;
+  width:100px;
+  height:150px;
 
-object-fit:cover;
+  object-fit:cover;
+  object-position:top;
 
-border-radius:14px;
+  border-radius:14px;
 
-box-shadow:0 10px 25px rgba(0,0,0,.4);
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
 
-transition:.3s;
+  transition:.3s;
 
 }
 
@@ -5339,87 +5340,61 @@ color: #25D366; /* your brand green */
 font-size: 14px;
 opacity: 0.8;
 }
+
 /* ============================= */
-/* STOP OPERATING SECTION */
+/* STOP OPERATING SECTION FIX */
 /* ============================= */
 
 .stop-english{
-padding:100px 20px;
-background:#0b0d11;
-color:#fff;
-text-align:center;
-}
-
-.stop-english h1{
-font-size:36px;
-margin-bottom:10px;
-}
-
-.stop-english .subtitle{
-opacity:.7;
-margin-bottom:60px;
-font-size:16px;
-}
-
-.comparison-container{
-display:flex;
-gap:40px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.column{
-flex:1;
-min-width:320px;
-max-width:500px;
-text-align:left;
-}
-
-.column h2{
-margin-bottom:25px;
-font-size:20px;
+  padding:100px 20px;
+  background:#0b0d11;
+  color:#fff;
+  text-align:center;
 }
 
 .phrase-box{
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-padding:20px;
-border-radius:10px;
-margin-bottom:15px;
-transition:.3s;
+  background:rgba(255,255,255,0.08); /* stronger */
+  border:1px solid rgba(255,255,255,0.15);
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:15px;
+  transition:.3s;
 }
 
 .phrase-box:hover{
-transform:translateY(-4px);
-border-color:rgba(255,255,255,0.3);
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,0.4);
 }
 
 /* LEFT (WRONG) */
 .column.wrong .phrase-box{
-border-left:4px solid #ff4d4f;
+  border-left:4px solid #ff4d4f;
 }
 
 .column.wrong p{
-color:#ffb3b3;
-font-weight:500;
+  color:#ffffff; /* FIX: make readable */
+  font-weight:500;
 }
 
 /* RIGHT (CORRECT) */
 .column.right .phrase-box{
-border-left:4px solid #25D366;
+  border-left:4px solid #25D366;
 }
 
 .column.right p{
-color:#b9ffcf;
-font-weight:600;
+  color:#ffffff; /* FIX: make readable */
+  font-weight:600;
 }
 
+/* LABEL (Basic / Executive) */
 .phrase-box span{
-display:block;
-font-size:13px;
-opacity:.7;
-margin-top:6px;
+  display:block;
+  font-size:13px;
+  opacity:.8; /* stronger */
+  margin-top:6px;
+  color:#ccc;
 }
+
 /* ============================= */
 /* INTERACTIVE ENGLISH TRAINING */
 /* ============================= */
@@ -5985,4 +5960,129 @@ box-shadow:0 10px 30px rgba(0,0,0,0.05);
 }
 .presentation-box {
   position: relative;
+}
+/* ============================= */
+/* AUDIO PLAYER PREMIUM STYLE */
+/* ============================= */
+
+.custom-audio {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  border-radius: 12px;
+  opacity: 0.95;
+}
+.phrase-box:hover{
+  background:rgba(255,255,255,0.12);
+}
+/* ============================= */
+/* FIX TEXT VISIBILITY */
+/* ============================= */
+
+.stop-english,
+.stop-english * {
+  color: #111 !important;
+}
+
+.stop-english {
+  background: #f5f5f5 !important;
+}
+/* ============================= */
+/* PRECISION SECTION - PREMIUM */
+/* ============================= */
+
+.example-box{
+  background:#532200; /* your puce color */
+  padding:25px;
+  border-radius:12px;
+  max-width:320px;
+  text-align:left;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+
+  transition:0.3s;
+}
+
+.example-box:hover{
+  transform:translateY(-6px);
+}
+
+/* TEXT (VERY IMPORTANT FOR CONTRAST) */
+
+.example-box h3{
+  color:#ffffff;
+  margin-bottom:12px;
+}
+
+.example-box p{
+  color:#f5e9e2; /* soft light beige for readability */
+  margin-bottom:10px;
+  line-height:1.5;
+}
+
+.example-box strong{
+  color:#ffffff;
+}
+.example-box{
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* DIFFERENTIATE LABELS (Weak / Strong / Basic / Executive) */
+
+.example-box strong{
+  color:#ffd9c2; /* soft highlight (premium look) */
+}
+.comparison-intro{
+  margin-bottom:40px;
+}
+
+.comparison-intro p{
+  color:#333;
+  font-size:16px;
+}
+/* ============================= */
+/* FORCE FULL WHITE TEXT (FINAL) */
+/* ============================= */
+
+.example-box{
+  background:#532200;
+  color:#ffffff;
+}
+
+/* FORCE EVERYTHING INSIDE */
+
+.example-box *{
+  color:#ffffff !important;
+}
+
+/* OPTIONAL: HIGHLIGHT LABELS */
+
+.example-box strong{
+  color:#ffd9c2 !important;
+}
+.blog-post-card{
+cursor:pointer;
+position:relative;
+}
+
+.blog-post-card::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+opacity:0;
+transition:.4s;
+}
+
+.blog-post-card:hover::after{
+opacity:1;
+}
+.blog-post-card img{
+width:100%;
+height:240px;
+object-fit:cover;
+object-position:center;
 }

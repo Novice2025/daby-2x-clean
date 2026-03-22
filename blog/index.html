@@ -2,175 +2,247 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Daby 2X</title>
-    <meta name="description" content="Artigos e insights sobre inglês estratégico, comunicação executiva e liderança global para profissionais de alta performance.">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Specific styles for the blog page */
-        .blog-hero {
-            min-height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 150px 80px 80px;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../assets/images/blog-hero-bg.jpg) no-repeat center center/cover;
-        }
-        .blog-hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-        }
-        .blog-hero p {
-            font-size: 1.2em;
-            max-width: 800px;
-            color: var(--soft-gray);
-        }
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 80px;
-        }
-        .blog-post-card {
-            background: var(--dark-gray);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-        .blog-post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-        .blog-post-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .blog-post-card-content {
-            padding: 25px;
-        }
-        .blog-post-card-content h3 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            color: var(--white-color);
-        }
-        .blog-post-card-content p {
-            font-size: 0.95em;
-            color: var(--soft-gray);
-            margin-bottom: 15px;
-        }
-        .blog-post-card-content .read-more {
-            color: var(--electric-blue);
-            font-weight: 600;
-            display: inline-block;
-        }
-        .blog-post-card-content .read-more:hover {
-            text-decoration: underline;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        @media (max-width: 768px) {
-            .blog-hero {
-                padding: 100px 20px 50px;
-            }
-            .blog-hero h1 {
-                font-size: 2.5em;
-            }
-            .blog-hero p {
-                font-size: 1em;
-            }
-            .blog-grid {
-                padding: 40px 20px;
-                gap: 30px;
-            }
-            .blog-post-card-content h3 {
-                font-size: 1.5em;
-            }
-        }
-    </style>
+<title>Blog Estratégico | Inglês para Executivos | Daby 2X</title>
+
+<meta name="description" content="Insights práticos sobre comunicação executiva em inglês. Aprenda a liderar reuniões, influenciar decisões e se posicionar globalmente.">
+
+<meta name="keywords" content="inglês profissional, inglês executivo, comunicação estratégica, inglês para negócios, liderança global">
+
+<meta name="author" content="Daby 2X">
+
+<link rel="stylesheet" href="../assets/css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* HERO */
+.blog-hero{
+min-height:60vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:140px 20px 80px;
+background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url(../assets/images/1.jpg) center/cover no-repeat;
+}
+
+.blog-hero h1{
+font-size:48px;
+margin-bottom:15px;
+}
+
+.blog-hero p{
+max-width:700px;
+opacity:.8;
+}
+
+/* GRID */
+.blog-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:40px;
+padding:80px 40px;
+}
+
+/* CARD */
+.blog-post-card{
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:14px;
+overflow:hidden;
+transition:.3s;
+text-decoration:none;
+color:#fff;
+}
+
+.blog-post-card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 40px rgba(0,0,0,.5);
+}
+
+.blog-post-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.blog-content{
+padding:25px;
+}
+
+.blog-content h3{
+margin-bottom:10px;
+font-size:20px;
+}
+
+.blog-content p{
+opacity:.75;
+font-size:14px;
+margin-bottom:15px;
+}
+
+.read-more{
+color:#4da6ff;
+font-weight:600;
+}
+
+/* CTA SECTION */
+.blog-cta{
+text-align:center;
+padding:100px 20px;
+background:#0b0d11;
+}
+
+.blog-cta h2{
+font-size:32px;
+margin-bottom:20px;
+}
+
+.blog-cta p{
+opacity:.8;
+margin-bottom:30px;
+}
+
+.blog-cta a{
+display:inline-block;
+padding:14px 28px;
+background:#4da6ff;
+color:#000;
+border-radius:8px;
+font-weight:600;
+text-decoration:none;
+}
+
+/* LINKEDIN SECTION */
+.linkedin-section{
+text-align:center;
+padding:80px 20px;
+}
+
+.linkedin-section a{
+color:#4da6ff;
+font-weight:600;
+}
+
+</style>
+
 </head>
 
 <body>
-    <!-- tsParticles container -->
-    <div id="tsparticles" style="
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-    "></div>
 
-    <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="logo">Daby 2X</div>
-        <nav>
-            <a href="../index.html#programa">Programa Individual</a>
-            <a href="../corporate/index.html">Empresas</a>
-            <a href="../index.html#depoimentos">Resultados</a>
-            <a href="../index.html#cta" class="btn-nav magnetic">Agendar Sessão</a>
-        </nav>
-    </header>
+<header class="navbar">
+<div class="logo">Daby 2X</div>
 
-    <main>
-        <section class="blog-hero reveal-on-scroll">
-            <h1>Insights para Liderança Global</h1>
-            <p>Artigos e estratégias para dominar a comunicação executiva em inglês e acelerar sua carreira.</p>
-        </section>
+<nav>
+<a href="../index.html#programa">Programa</a>
+<a href="../corporate/index.html">Empresas</a>
+<a href="../index.html#depoimentos">Resultados</a>
+<a href="../index.html#cta" class="btn-nav">Agendar Sessão</a>
+</nav>
+</header>
 
-        <section class="blog-grid-section">
-            <div class="blog-grid">
-                <!-- Blog Post Card 1 -->
-                <a href="stop-operating-in-english.html" class="blog-post-card reveal-on-scroll">
-                    <img src="../assets/images/blog-post-placeholder-1.jpg" alt="Blog Post Image">
-                    <div class="blog-post-card-content">
-                        <h3>Stop Operating in English. Start Leading in English.</h3>
-                        <p>Descubra a diferença entre ser fluente e ser influente em reuniões internacionais.</p>
-                        <span class="read-more">Leia Mais &rarr;</span>
-                    </div>
-                </a>
-                <!-- Blog Post Card 2 -->
-                <a href="#" class="blog-post-card reveal-on-scroll">
-                    <img src="../assets/images/blog-post-placeholder-2.jpg" alt="Blog Post Image">
-                    <div class="blog-post-card-content">
-                        <h3>O Paradoxo Brasileiro: Por que seu inglês intermediário não avança?</h3>
-                        <p>Analisamos os bloqueios psicológicos e estratégicos que impedem o salto de nível.</p>
-                        <span class="read-more">Leia Mais &rarr;</span>
-                    </div>
-                </a>
-                <!-- Blog Post Card 3 -->
-                <a href="#" class="blog-post-card reveal-on-scroll">
-                    <img src="../assets/images/blog-post-placeholder-3.jpg" alt="Blog Post Image">
-                    <div class="blog-post-card-content">
-                        <h3>Como a Comunicação Estratégica 2X Impulsiona Sua Carreira</h3>
-                        <p>Entenda como um método focado em impacto pode dobrar suas oportunidades.</p>
-                        <span class="read-more">Leia Mais &rarr;</span>
-                    </div>
-                </a>
-                <!-- Add more blog post cards as needed -->
-            </div>
-        </section>
-    </main>
+<main>
 
-    <!-- FLOATING CONTACT BUTTONS -->
-    <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" class="whatsapp magnetic">WhatsApp</a>
-    <a href="YOUR_LINKEDIN_PROFILE_URL" target="_blank" class="linkedin magnetic">LinkedIn</a>
-    <button id="scroll-to-top" class="magnetic">↑</button>
-    <div id="scroll-progress"></div>
+<!-- HERO -->
+<section class="blog-hero">
+<h1>Insights para Liderança Global</h1>
+<p>Não é sobre aprender inglês. É sobre se posicionar com autoridade em ambientes internacionais.</p>
+</section>
 
-    <!-- JavaScript Files -->
-    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/animations.js"></script>
-    <script src="../assets/js/magnetic.js"></script>
-    <script src="../assets/js/particles.js"></script>
-    <script src="../assets/js/scroll.js"></script>
-    <script src="../assets/js/carousel.js"></script>
-    <script src="../assets/js/diagram.js"></script>
+<!-- BLOG GRID -->
+<section class="blog-grid">
+
+<!-- POST 1 -->
+<!-- POST - CATALOGUE STYLE -->
+<a href="stop-operating-in-english.html" class="blog-post-card">
+
+<img src="../assets/images/1.png" alt="Stop Operating in English">
+
+<div class="blog-content">
+
+<h3>Stop Operating in English. Start Leading in English.</h3>
+
+<p>
+Existe uma diferença brutal entre falar inglês e liderar conversas em inglês. A maioria nunca cruza essa linha.
+</p>
+
+<span class="read-more">Leia Mais →</span>
+
+</div>
+
+</a>
+
+<!-- POST 2 -->
+<a href="paradoxo-brasileiro.html">
+
+<img src="../assets/images/2.png">
+
+<div class="blog-content">
+<h3>O Paradoxo Brasileiro: Por que seu inglês não avança?</h3>
+
+<p>Você estuda há anos… mas continua travado em reuniões. O problema não é inglês. É estratégia.</p>
+
+<span class="read-more">Leia Mais →</span>
+</div>
+
+</a>
+
+<!-- POST 3 -->
+<a href="comunicacao-estrategica-2x.html" class="blog-post-card">
+
+<img src="../assets/images/3.png">
+
+<div class="blog-content">
+<h3>Comunicação Estratégica 2X: O que realmente muda sua carreira</h3>
+
+<p>Não é sobre fluência. É sobre influência. Quem domina isso acelera carreira — rápido.</p>
+
+<span class="read-more">Leia Mais →</span>
+</div>
+
+</a>
+
+</section>
+
+<!-- LINKEDIN AUTHORITY -->
+<section class="linkedin-section">
+
+<h2>Conteúdo direto do campo real</h2>
+
+<p>
+Publico insights práticos e análises reais diretamente no LinkedIn — onde profissionais aplicam no dia seguinte.
+</p>
+
+<a href="https://www.linkedin.com/in/vishul-daby-476a8b266/" target="_blank">
+Ver artigos no LinkedIn →
+</a>
+
+</section>
+
+<!-- CTA -->
+<section class="blog-cta">
+
+<h2>Você não precisa de mais inglês.</h2>
+
+<p>Precisa de clareza para se posicionar sob pressão em ambientes globais.</p>
+
+<a href="https://wa.me/5511986108003" target="_blank">
+Receber diagnóstico estratégico
+</a>
+
+</section>
+
+</main>
+
+<!-- FLOATING -->
+<a href="https://wa.me/5511986108003" target="_blank" class="whatsapp">WhatsApp</a>
+<a href="https://www.linkedin.com/in/vishul-daby-476a8b266/" target="_blank" class="linkedin">LinkedIn</a>
+
 </body>
 
 </html>

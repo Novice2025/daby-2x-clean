@@ -1,0 +1,11 @@
+Apply this exact URL replacement in the learning-platform source only:
+
+FIND
+https://www.vdaby.com/learning%201/
+
+REPLACE WITH
+https://vdaby.com/learning/
+
+Apply only to URL-bearing technical fields: rel=canonical, hreflang href values, og:url, JSON-LD url values, and JSON-LD @id values. Do not change any visible text, labels, titles, descriptions, or instructional wording.
+
+Keep the learning application routes, login behavior, trial flow, admin behavior, sessions, PHP endpoints, and existing platform wording unchanged.

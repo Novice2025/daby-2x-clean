@@ -1,25 +1,13 @@
- <?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-<url>
-<loc>https://daby2x.netlify.app/</loc>
-</url>
-
-<url>
-<loc>https://daby2x.netlify.app/blog/</loc>
-</url>
-
-<url>
-<loc>https://daby2x.netlify.app/blog/stop-operating-in-english.html</loc>
-</url>
-
-<url>
-<loc>https://daby2x.netlify.app/blog/paradoxo-brasileiro.html</loc>
-</url>
-
-<url>
-<loc>https://daby2x.netlify.app/blog/comunicacao-estrategica-2x.html</loc>
-</url>
-
+  <url><loc>https://vdaby.com/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/metodo/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/corporate/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/blog/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/blog/stop-operating-in-english/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/blog/o-paradoxo-brasileiro/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/blog/comunicacao-estrategica-2x/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/seo-geo/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/linkedin/</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://vdaby.com/ai-discovery/</loc><lastmod>2026-09-16</lastmod></url>
 </urlset>

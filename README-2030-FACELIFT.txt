@@ -17,7 +17,7 @@ DESIGN:
 
 DEPLOY:
 1. Upload files preserving their paths.
-2. Do not delete the existing assets/, manus-storage/, or compiled application bundles.
+2. Preserve the current assets/ directory and all runtime assets referenced by the HTML/PHP pages. Do not remove current CSS, JavaScript, image, SVG, or other application files unless their runtime references have been verified first.
 3. Hard refresh: Cmd+Shift+R / Ctrl+Shift+R.
 4. Test Home -> Metodo -> Corporate -> Real-World -> Blog -> Home.
 5. Test desktop hover and mobile touch.

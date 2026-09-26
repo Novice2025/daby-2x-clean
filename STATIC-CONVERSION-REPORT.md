@@ -31,11 +31,7 @@ Foram atualizados os dez documentos HTML canônicos acima, além dos cinco alias
 
 Os bundles históricos permanecem fisicamente no diretório `assets/` para preservação e rollback, mas **não são referenciados pelas páginas públicas finais**. Não são necessários em produção:
 
-- `assets/index--7ReQwjR.js`
-- `assets/index-B8FYYEC3.js`
-- `assets/index-CFTOp884.js`
-- `assets/index-CFfKmkAO.js`
-- `assets/index-CdeHNQAh.js`
+- Historical compiled bundles listed in this report were superseded during the static conversion and are no longer part of the current runtime.
 
 O `index.php` também foi preservado por compatibilidade, mas o homepage público é `index.html` e não depende de PHP.
 

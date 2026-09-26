@@ -15,5 +15,5 @@ Upload/replace only the files in this ZIP, preserving the folders shown.
 Do NOT delete the existing site and do NOT upload the original full project again.
 
 Important
-The compiled bundle is supplied in /assets/ because the current HTML pages reference /assets/index-CdeHNQAh.js.
+The historical compiled bundle previously mentioned here is no longer required by the current HTML pages.
 The root and /assets copies are also supplied because the project contains duplicate bundle locations; replacing them keeps the deployment consistent.

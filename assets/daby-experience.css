@@ -1,0 +1,702 @@
+
+/* =========================================================
+   VDABY EXPERIENCE LAYER v1.0
+   Additive design system — does not replace application CSS.
+   ========================================================= */
+:root{
+  --vd-bg:#07111f;
+  --vd-bg-2:#0a1626;
+  --vd-panel:rgba(13,25,41,.72);
+  --vd-panel-strong:rgba(12,23,38,.92);
+  --vd-line:rgba(214,226,241,.13);
+  --vd-line-strong:rgba(214,226,241,.22);
+  --vd-text:#f4f7fb;
+  --vd-muted:#9eacbc;
+  --vd-gold:#d4af37;
+  --vd-gold-soft:#ead58b;
+  --vd-cyan:#32d6ff;
+  --vd-radius:22px;
+  --vd-ease:cubic-bezier(.22,1,.36,1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(900px 500px at 78% -5%,rgba(50,214,255,.055),transparent 62%),
+    radial-gradient(800px 500px at 8% 30%,rgba(212,175,55,.045),transparent 64%),
+    linear-gradient(180deg,var(--vd-bg),#06101c 60%,#07111f);
+  color:var(--vd-text);
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.14;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom,black,transparent 82%);
+}
+#root,.site-shell{position:relative;z-index:1}
+::selection{background:rgba(212,175,55,.28);color:#fff}
+
+/* Global chrome refinement */
+.topbar{
+  background:rgba(7,17,31,.72)!important;
+  backdrop-filter:blur(18px) saturate(130%);
+  -webkit-backdrop-filter:blur(18px) saturate(130%);
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  box-shadow:0 10px 40px rgba(0,0,0,.12);
+}
+.topbar-inner{max-width:1440px!important}
+.brand-copy strong{letter-spacing:-.02em}
+.brand-copy small{letter-spacing:.24em!important;color:rgba(234,213,139,.7)!important}
+.desktop-nav a{transition:color .2s var(--vd-ease),transform .2s var(--vd-ease)!important}
+.desktop-nav a:hover{color:var(--vd-gold-soft)!important;transform:translateY(-1px)}
+.nav-active{color:var(--vd-gold-soft)!important}
+.header-cta,.header-cta a{
+  border-color:rgba(212,175,55,.42)!important;
+  background:linear-gradient(180deg,rgba(212,175,55,.18),rgba(212,175,55,.07))!important;
+}
+
+/* Editorial type */
+.hero h1,.page-hero h1,.article-header h1{
+  letter-spacing:-.045em!important;
+  text-wrap:balance;
+}
+.eyebrow{
+  color:var(--vd-gold-soft)!important;
+  letter-spacing:.18em!important;
+}
+
+/* Panels/cards */
+[class*="card"],[class*="Card"],.glass,.feature-card,.method-card,.article-card{
+  border-color:var(--vd-line)!important;
+}
+[class*="card"]:hover,[class*="Card"]:hover,.feature-card:hover,.method-card:hover,.article-card:hover{
+  border-color:rgba(212,175,55,.30)!important;
+  box-shadow:0 22px 70px rgba(0,0,0,.24),0 0 0 1px rgba(212,175,55,.04);
+}
+
+/* Reusable experience components */
+.vdaby-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--vd-ease),transform .7s var(--vd-ease)}
+.vdaby-reveal.is-visible{opacity:1;transform:none}
+.vdaby-progress{
+  position:fixed;left:0;top:0;height:2px;width:0;z-index:2147483000;
+  background:linear-gradient(90deg,var(--vd-gold),var(--vd-gold-soft),var(--vd-cyan));
+  box-shadow:0 0 16px rgba(212,175,55,.35);pointer-events:none
+}
+.vdaby-orbit{
+  position:fixed;right:24px;bottom:28px;width:92px;height:92px;z-index:1200;
+  border:1px solid rgba(255,255,255,.13);border-radius:50%;
+  background:rgba(7,17,31,.66);backdrop-filter:blur(16px);
+  box-shadow:0 20px 70px rgba(0,0,0,.34),inset 0 0 30px rgba(255,255,255,.025);
+}
+.vdaby-orbit::before{
+  content:"";position:absolute;inset:14px;border:1px solid rgba(212,175,55,.18);border-radius:50%;
+  animation:vd-spin 16s linear infinite
+}
+.vdaby-orbit-toggle{
+  position:absolute;inset:22px;border:1px solid rgba(212,175,55,.45);border-radius:50%;
+  background:linear-gradient(145deg,rgba(212,175,55,.2),rgba(255,255,255,.03));
+  color:#fff;cursor:pointer;font-size:12px;letter-spacing:.12em;text-transform:uppercase
+}
+.vdaby-orbit-items{position:absolute;inset:-12px;pointer-events:none}
+.vdaby-orbit-item{
+  position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px;
+  display:grid;place-items:center;border-radius:50%;text-decoration:none;color:#eef4fb;
+  background:rgba(11,24,40,.96);border:1px solid rgba(255,255,255,.13);
+  font-size:18px;box-shadow:0 8px 25px rgba(0,0,0,.28);
+  opacity:0;transform:rotate(var(--a)) translateX(76px) rotate(calc(var(--a) * -1)) scale(.7);
+  transition:opacity .35s var(--vd-ease),transform .55s var(--vd-ease),border-color .2s;
+}
+.vdaby-orbit.open .vdaby-orbit-item{opacity:1;pointer-events:auto}
+.vdaby-orbit.open .vdaby-orbit-item:hover{border-color:rgba(212,175,55,.7);transform:rotate(var(--a)) translateX(82px) rotate(calc(var(--a) * -1)) scale(1.08)}
+.vdaby-orbit-label{
+  position:absolute;right:108px;bottom:17px;white-space:nowrap;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(234,213,139,.75);opacity:.85
+}
+.vdaby-universe{
+  margin:clamp(40px,7vw,100px) auto;padding:clamp(26px,4vw,56px);
+  max-width:1200px;border:1px solid var(--vd-line);border-radius:32px;
+  background:linear-gradient(145deg,rgba(13,28,46,.82),rgba(7,17,31,.54));
+  box-shadow:0 30px 100px rgba(0,0,0,.22);overflow:hidden;position:relative
+}
+.vdaby-universe::before{
+  content:"";position:absolute;width:420px;height:420px;right:-180px;top:-180px;border:1px solid rgba(50,214,255,.1);border-radius:50%;
+  box-shadow:0 0 0 60px rgba(50,214,255,.025),0 0 0 120px rgba(212,175,55,.018)
+}
+.vdaby-universe-head{max-width:720px;position:relative;z-index:1}
+.vdaby-universe-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--vd-gold-soft)}
+.vdaby-universe h2{font-size:clamp(30px,5vw,62px);line-height:.98;letter-spacing:-.045em;margin:.45em 0}
+.vdaby-universe p{color:var(--vd-muted);max-width:620px;line-height:1.7}
+.vdaby-orbit-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px;position:relative;z-index:1
+}
+.vdaby-universe-card{
+  min-height:142px;padding:22px;border-radius:20px;border:1px solid var(--vd-line);
+  background:rgba(255,255,255,.025);text-decoration:none;color:inherit;
+  transition:transform .35s var(--vd-ease),border-color .25s,background .25s
+}
+.vdaby-universe-card:hover{transform:translateY(-7px);border-color:rgba(212,175,55,.42);background:rgba(255,255,255,.045)}
+.vdaby-universe-icon{font-size:25px;margin-bottom:22px}
+.vdaby-universe-card strong{display:block;font-size:15px}
+.vdaby-universe-card span{display:block;margin-top:7px;font-size:12px;color:var(--vd-muted);line-height:1.45}
+.vdaby-flow{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin:45px auto;max-width:1200px
+}
+.vdaby-flow-step{position:relative;padding:22px 16px 22px 22px;border-top:1px solid var(--vd-line)}
+.vdaby-flow-step::after{content:"→";position:absolute;right:-8px;top:18px;color:rgba(212,175,55,.7);font-size:18px}
+.vdaby-flow-step:last-child::after{display:none}
+.vdaby-flow-num{font-size:10px;letter-spacing:.15em;color:var(--vd-gold-soft)}
+.vdaby-flow-step strong{display:block;margin-top:12px;font-size:14px}
+.vdaby-flow-step span{display:block;color:var(--vd-muted);font-size:12px;line-height:1.5;margin-top:7px}
+
+@keyframes vd-spin{to{transform:rotate(360deg)}}
+@media(max-width:900px){
+ .vdaby-orbit-grid{grid-template-columns:repeat(2,1fr)}
+ .vdaby-flow{grid-template-columns:repeat(2,1fr)}
+ .vdaby-flow-step::after{display:none}
+}
+@media(max-width:600px){
+ .vdaby-orbit{right:14px;bottom:18px;transform:scale(.9);transform-origin:bottom right}
+ .vdaby-orbit-label{display:none}
+ .vdaby-universe{border-radius:24px;padding:24px}
+ .vdaby-orbit-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .vdaby-reveal{opacity:1;transform:none;transition:none}
+ .vdaby-orbit::before{animation:none}
+}
+
+/* =========================================================
+   VDABY EXPERIENCE LAYER v1.1 — surgical enhancements
+   Uses existing assets; additive only.
+   ========================================================= */
+.vdaby-surgical{position:relative;margin:clamp(42px,7vw,96px) auto;max-width:1200px;padding:clamp(24px,4vw,54px);border:1px solid var(--vd-line);border-radius:30px;background:linear-gradient(145deg,rgba(13,27,44,.78),rgba(7,17,31,.58));box-shadow:0 28px 90px rgba(0,0,0,.2);overflow:hidden}
+.vdaby-surgical::after{content:"";position:absolute;inset:auto -15% -55% 25%;height:360px;background:radial-gradient(circle,rgba(212,175,55,.055),transparent 65%);pointer-events:none}
+.vdaby-surgical-head{position:relative;z-index:1;max-width:760px;margin-bottom:30px}
+.vdaby-surgical-kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--vd-gold-soft);margin-bottom:12px}
+.vdaby-surgical h2{font-size:clamp(28px,4.2vw,52px);line-height:1.02;letter-spacing:-.04em;margin:0}
+.vdaby-surgical-intro{color:var(--vd-muted);line-height:1.7;margin:15px 0 0;max-width:700px}
+.vdaby-strategy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative;z-index:1}
+.vdaby-strategy-card{padding:23px;border:1px solid var(--vd-line);border-radius:18px;background:rgba(255,255,255,.025);transition:transform .35s var(--vd-ease),border-color .25s,background .25s}
+.vdaby-strategy-card:hover{transform:translateY(-5px);border-color:rgba(212,175,55,.38);background:rgba(255,255,255,.04)}
+.vdaby-strategy-index{font-size:10px;letter-spacing:.16em;color:var(--vd-gold-soft)}
+.vdaby-strategy-card strong{display:block;margin-top:14px;font-size:16px}
+.vdaby-strategy-card p{font-size:12px;line-height:1.55;color:var(--vd-muted);margin:8px 0 0}
+.vdaby-diagram-frame{position:relative;z-index:1;margin-top:28px;border:1px solid var(--vd-line);border-radius:18px;background:#07111f;padding:10px;overflow:hidden}
+.vdaby-diagram-frame img{display:block;width:100%;height:auto;border-radius:12px;opacity:.96}
+.vdaby-diagram-caption{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(234,213,139,.62);padding:12px 8px 5px}
+.vdaby-proof-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;position:relative;z-index:1}
+.vdaby-proof{border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:9px 13px;font-size:11px;color:#dce5ef;background:rgba(255,255,255,.025)}
+.vdaby-ai-map{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;position:relative;z-index:1}
+.vdaby-ai-core,.vdaby-ai-list{border:1px solid var(--vd-line);border-radius:20px;background:rgba(255,255,255,.025);padding:24px}
+.vdaby-ai-core{min-height:230px;display:flex;flex-direction:column;justify-content:center}
+.vdaby-ai-core strong{font-size:clamp(24px,3.5vw,40px);letter-spacing:-.04em;line-height:1.05}
+.vdaby-ai-core span{color:var(--vd-muted);font-size:12px;line-height:1.6;margin-top:12px;max-width:500px}
+.vdaby-ai-list{display:grid;gap:8px}
+.vdaby-ai-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px;border:1px solid rgba(255,255,255,.07);border-radius:12px;color:#eaf0f7;text-decoration:none;font-size:12px;transition:border-color .2s,transform .2s var(--vd-ease)}
+.vdaby-ai-list a:hover{border-color:rgba(212,175,55,.35);transform:translateX(3px)}
+.vdaby-ai-list a::after{content:"↗";color:var(--vd-gold-soft)}
+.vdaby-orbit-toggle:focus-visible,.vdaby-orbit-item:focus-visible,.vdaby-universe-card:focus-visible,.vdaby-ai-list a:focus-visible{outline:2px solid var(--vd-gold-soft);outline-offset:3px}
+@media(max-width:900px){.vdaby-strategy-grid{grid-template-columns:1fr 1fr}.vdaby-ai-map{grid-template-columns:1fr}}
+@media(max-width:600px){.vdaby-surgical{border-radius:24px;padding:24px}.vdaby-strategy-grid{grid-template-columns:1fr}.vdaby-proof-row{gap:7px}}
+
+/* =========================================================
+   VDABY EXPERIENCE v1.2 — restored asset storytelling + orbital cards
+   Existing images are preserved; this layer only composes them.
+   ========================================================= */
+.vdaby-asset-showcase{max-width:1200px;margin:clamp(48px,8vw,110px) auto;padding:0 20px}
+.vdaby-showcase-head{max-width:760px;margin-bottom:28px}
+.vdaby-showcase-head h2{font-size:clamp(28px,4.5vw,56px);line-height:1;letter-spacing:-.045em;margin:.45em 0}
+.vdaby-showcase-head p{max-width:680px;color:var(--vd-muted);line-height:1.7}
+.vdaby-media-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px}
+.vdaby-media-card{--rx:0deg;--ry:0deg;display:flex;flex-direction:column;min-height:410px;overflow:hidden;border:1px solid var(--vd-line);border-radius:24px;background:var(--vd-panel);text-decoration:none;color:inherit;transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .28s var(--vd-ease),border-color .25s,box-shadow .3s}
+.vdaby-media-card:first-child{min-height:470px}
+.vdaby-media-card:hover{border-color:rgba(212,175,55,.42);box-shadow:0 28px 80px rgba(0,0,0,.28)}
+.vdaby-media-image{position:relative;min-height:220px;overflow:hidden;background:#0b1624}
+.vdaby-media-card:first-child .vdaby-media-image{min-height:280px}
+.vdaby-media-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,17,31,.55))}
+.vdaby-media-image img{width:100%;height:100%;min-height:inherit;display:block;object-fit:cover;transition:transform .7s var(--vd-ease),filter .4s}
+.vdaby-media-card:hover .vdaby-media-image img{transform:scale(1.045)}
+.vdaby-media-copy{padding:20px 21px 22px;display:flex;flex-direction:column;flex:1}
+.vdaby-media-copy span{font-size:9px;letter-spacing:.18em;color:var(--vd-gold-soft)}
+.vdaby-media-copy strong{font-size:clamp(18px,2vw,25px);line-height:1.1;letter-spacing:-.025em;margin-top:12px;max-width:340px}
+.vdaby-media-copy small{margin-top:auto;padding-top:18px;color:var(--vd-gold-soft);font-size:11px}
+.vdaby-situation-orbit{max-width:1200px;margin:clamp(55px,9vw,120px) auto;padding:clamp(25px,4vw,50px);display:grid;grid-template-columns:.8fr 1.2fr;gap:20px;align-items:center;border-top:1px solid var(--vd-line);border-bottom:1px solid var(--vd-line);overflow:hidden}
+.vdaby-orbit-story h2{font-size:clamp(28px,4vw,50px);line-height:1.02;letter-spacing:-.045em;margin:.45em 0}
+.vdaby-orbit-story p{color:var(--vd-muted);line-height:1.7;max-width:470px}
+.vdaby-situation-stage{position:relative;aspect-ratio:1;max-width:590px;margin:auto;width:100%;display:grid;place-items:center}
+.vdaby-situation-ring{position:absolute;width:70%;height:70%;border:1px solid rgba(234,213,139,.22);border-radius:50%;box-shadow:0 0 80px rgba(212,175,55,.045);animation:vdaby-orbit-spin 26s linear infinite}
+.vdaby-situation-ring::before{content:"";position:absolute;inset:8%;border:1px dashed rgba(255,255,255,.08);border-radius:50%}
+.vdaby-situation-core{position:absolute;width:25%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.1),rgba(7,17,31,.96) 65%);border:1px solid rgba(212,175,55,.3);box-shadow:0 15px 50px rgba(0,0,0,.3);z-index:2}
+.vdaby-situation-core span{font-size:9px;letter-spacing:.22em;color:var(--vd-gold-soft)}
+.vdaby-situation-core strong{font-size:10px;letter-spacing:.12em}
+.vdaby-situation-core small{font-size:8px;color:var(--vd-muted)}
+.vdaby-situation-items{position:absolute;inset:0;animation:vdaby-orbit-spin 34s linear infinite}
+.vdaby-situation-item{--angle:calc(var(--i) * 60deg);position:absolute;left:50%;top:50%;width:145px;min-height:95px;padding:13px 14px;border:1px solid var(--vd-line);border-radius:16px;background:rgba(9,21,35,.9);backdrop-filter:blur(12px);text-decoration:none;color:#eef3f8;transform:rotate(var(--angle)) translateY(-175px) rotate(calc(var(--angle) * -1));transition:border-color .25s,background .25s,box-shadow .25s;transform-origin:center center}
+.vdaby-situation-item:hover{border-color:rgba(212,175,55,.55);background:rgba(18,32,49,.97);box-shadow:0 16px 45px rgba(0,0,0,.3);z-index:5}
+.vdaby-situation-item span{display:block;font-size:8px;letter-spacing:.14em;color:var(--vd-gold-soft)}
+.vdaby-situation-item strong{display:block;font-size:14px;margin-top:7px}
+.vdaby-situation-item small{display:block;color:var(--vd-muted);font-size:10px;line-height:1.35;margin-top:5px}
+@keyframes vdaby-orbit-spin{to{transform:rotate(360deg)}}
+@media(max-width:900px){.vdaby-media-grid{grid-template-columns:1fr 1fr}.vdaby-media-card:first-child{grid-column:1/-1}.vdaby-situation-orbit{grid-template-columns:1fr}.vdaby-situation-stage{max-width:540px}}
+@media(max-width:620px){.vdaby-media-grid{grid-template-columns:1fr}.vdaby-media-card,.vdaby-media-card:first-child{min-height:390px}.vdaby-media-card:first-child{grid-column:auto}.vdaby-situation-stage{min-width:460px;left:50%;transform:translateX(-50%);margin:10px 0 -20px}.vdaby-situation-orbit{overflow:hidden;padding-left:18px;padding-right:18px}.vdaby-situation-item{width:128px}.vdaby-situation-ring{width:66%;height:66%}}
+@media(prefers-reduced-motion:reduce){.vdaby-situation-ring,.vdaby-situation-items{animation:none}.vdaby-media-card{transform:none}}
+.vdaby-situation-item{font:inherit;text-align:left;cursor:pointer;color:inherit}
+.vdaby-situation-item.is-active{border-color:rgba(212,175,55,.7);box-shadow:0 0 0 1px rgba(212,175,55,.12),0 18px 50px rgba(0,0,0,.3)}
+
+
+/* =========================================================
+   VDABY EXPERIENCE v1.3 — readable orbital motion + dynamic cards
+   ========================================================= */
+/* The satellite itself travels around the orbit while its content
+   counter-rotates, so labels remain upright and readable. */
+.vdaby-situation-items{position:absolute;inset:0;animation:none!important}
+.vdaby-situation-item{
+  --orbit-size:175px;
+  --orbit-duration:34s;
+  left:50%;top:50%;margin:0;
+  transform:translate(-50%,-50%) rotate(0deg) translateY(calc(var(--orbit-size) * -1)) rotate(0deg);
+  animation:vdaby-readable-orbit var(--orbit-duration) linear infinite;
+  animation-delay:calc(var(--i) * -5.6666667s);
+  will-change:transform;
+  transform-origin:center center;
+}
+.vdaby-situation-item:hover{animation-play-state:paused;z-index:8}
+@keyframes vdaby-readable-orbit{
+  from{transform:translate(-50%,-50%) rotate(0deg) translateY(calc(var(--orbit-size) * -1)) rotate(0deg)}
+  to{transform:translate(-50%,-50%) rotate(360deg) translateY(calc(var(--orbit-size) * -1)) rotate(-360deg)}
+}
+.vdaby-situation-item strong,.vdaby-situation-item small{transform:none!important}
+.vdaby-situation-item::before{content:"";position:absolute;inset:-4px;border-radius:19px;border:1px solid rgba(212,175,55,0);transition:border-color .25s,box-shadow .25s;pointer-events:none}
+.vdaby-situation-item:hover::before{border-color:rgba(212,175,55,.22);box-shadow:0 0 28px rgba(212,175,55,.08)}
+/* Dynamic tilt is intentionally restrained: movement is felt, not seen as a gimmick. */
+.vdaby-strategy-card,.vdaby-universe-card,.vdaby-ai-list a{
+  --cx:0px;--cy:0px;--rx:0deg;--ry:0deg;
+}
+.vdaby-strategy-card:hover,.vdaby-universe-card:hover,.vdaby-ai-list a:hover{
+  transform:translate3d(var(--cx),calc(-5px + var(--cy)),0) perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+}
+.vdaby-universe-card{transition:transform .25s var(--vd-ease),border-color .25s,background .25s,box-shadow .3s}
+.vdaby-strategy-card{transition:transform .25s var(--vd-ease),border-color .25s,background .25s,box-shadow .3s}
+.vdaby-ai-list a{transition:transform .25s var(--vd-ease),border-color .2s}
+/* Give the restored image cards a stronger editorial treatment on interior pages. */
+.vdaby-situation-orbit + .vdaby-asset-showcase{margin-top:clamp(30px,5vw,70px)}
+.vdaby-media-card{isolation:isolate}
+.vdaby-media-card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}
+.vdaby-media-image,.vdaby-media-copy{position:relative;z-index:1}
+@media(max-width:620px){
+ .vdaby-situation-item{--orbit-size:158px;--orbit-duration:36s;width:124px}
+}
+@media(prefers-reduced-motion:reduce){
+ .vdaby-situation-item{animation:none;transform:translate(-50%,-50%) rotate(calc(var(--i) * 60deg)) translateY(calc(var(--orbit-size) * -1)) rotate(calc(var(--i) * -60deg))}
+ .vdaby-strategy-card:hover,.vdaby-universe-card:hover,.vdaby-ai-list a:hover{transform:translateY(-5px)}
+}
+
+
+/* =========================================================
+   VDABY EXPERIENCE v1.4 — Method Learning Universe
+   Additive only. Does not alter the compiled application/Tailwind bundle.
+   ========================================================= */
+.vdaby-method-universe{
+  position:relative;
+  max-width:1200px;
+  margin:clamp(56px,9vw,120px) auto;
+  padding:clamp(28px,4.5vw,58px);
+  display:grid;
+  grid-template-columns:minmax(300px,.78fr) minmax(430px,1.22fr);
+  gap:clamp(24px,5vw,72px);
+  align-items:center;
+  border:1px solid rgba(212,175,55,.16);
+  border-radius:32px;
+  background:
+    radial-gradient(circle at 76% 45%,rgba(50,214,255,.055),transparent 30%),
+    radial-gradient(circle at 22% 80%,rgba(212,175,55,.06),transparent 34%),
+    linear-gradient(145deg,rgba(13,27,44,.9),rgba(7,17,31,.72));
+  box-shadow:0 35px 110px rgba(0,0,0,.25);
+  overflow:hidden;
+}
+.vdaby-method-universe::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:linear-gradient(to bottom,black,transparent 88%);
+}
+.vdaby-orbit-story{position:relative;z-index:4}
+.vdaby-orbit-story h2{
+  font-size:clamp(30px,4.1vw,54px);
+  line-height:.99;
+  letter-spacing:-.05em;
+  margin:.45em 0;
+  max-width:620px;
+}
+.vdaby-orbit-story>p{
+  color:var(--vd-muted);
+  line-height:1.72;
+  max-width:570px;
+}
+.vdaby-orbit-detail{
+  display:grid;
+  grid-template-columns:92px 1fr;
+  gap:14px;
+  align-items:center;
+  margin-top:24px;
+  max-width:500px;
+  padding:10px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:rgba(255,255,255,.025);
+  backdrop-filter:blur(12px);
+}
+.vdaby-orbit-detail-media{
+  width:92px;height:72px;overflow:hidden;border-radius:12px;background:#0b1624;
+}
+.vdaby-orbit-detail-media img{
+  width:100%;height:100%;display:block;object-fit:cover;
+  transition:opacity .25s,transform .5s var(--vd-ease);
+}
+.vdaby-orbit-detail-copy span{
+  display:block;font-size:9px;letter-spacing:.17em;color:var(--vd-gold-soft);
+}
+.vdaby-orbit-detail-copy strong{display:block;font-size:17px;margin-top:5px}
+.vdaby-orbit-detail-copy p{font-size:11px;line-height:1.45;color:var(--vd-muted);margin-top:4px}
+
+/* Uiverse-inspired CTA: same visual language, but kept self-contained and link-accessible. */
+.vdaby-uiverse-button{
+  position:relative;
+  display:inline-flex;
+  width:180px;
+  height:58px;
+  margin-top:24px;
+  text-decoration:none;
+  color:#fff;
+  border-radius:15px;
+}
+.vdaby-real-button{
+  position:absolute;
+  inset:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  border-radius:15px;
+  color:transparent;
+  background:transparent;
+  cursor:pointer;
+  outline:none;
+}
+.vdaby-button-shell{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:15px;
+  background:#111215;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025),0 12px 35px rgba(0,0,0,.22);
+}
+.vdaby-button-border{
+  position:absolute;
+  inset:-1px;
+  border-radius:16px;
+  padding:2px;
+  background:linear-gradient(135deg,rgba(212,175,55,.8),rgba(50,214,255,.3),rgba(255,255,255,.08));
+  opacity:.72;
+}
+.vdaby-backdrop{
+  position:absolute;
+  inset:-100%;
+  background:radial-gradient(circle at 50% 50%,transparent 0,transparent 20%,rgba(17,17,17,.75) 52%);
+  background-size:3px 3px;
+  z-index:1;
+}
+.vdaby-spin{
+  position:absolute;
+  inset:-65%;
+  border-radius:30%;
+  opacity:.35;
+  pointer-events:none;
+  transition:opacity .3s;
+  z-index:0;
+}
+.vdaby-spin::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  animation:vdaby-button-speen 8s cubic-bezier(.56,.15,.28,.86) infinite,
+            vdaby-button-woah 4s ease-in-out infinite;
+  animation-play-state:paused;
+}
+.vdaby-spin-blur{filter:blur(22px)}
+.vdaby-spin-intense{filter:blur(5px);opacity:.55}
+.vdaby-spin-inside{inset:-2px;filter:blur(2px);opacity:.8}
+.vdaby-spin-blur::before{background:linear-gradient(90deg,#f50 30%,transparent 50%,#05f 70%)}
+.vdaby-spin-intense::before{background:linear-gradient(90deg,#f95 20%,transparent 45% 55%,#59f 80%)}
+.vdaby-spin-inside::before{background:linear-gradient(90deg,#fc9 30%,transparent 45% 55%,#9cf 70%)}
+.vdaby-real-button:hover~.vdaby-button-shell .vdaby-spin,
+.vdaby-real-button:focus-visible~.vdaby-button-shell .vdaby-spin{opacity:.75}
+.vdaby-real-button:hover~.vdaby-button-shell .vdaby-spin::before,
+.vdaby-real-button:focus-visible~.vdaby-button-shell .vdaby-spin::before{animation-play-state:running}
+.vdaby-button-label{
+  position:relative;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:11px;
+  font-weight:650;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.vdaby-button-label b{font-size:15px;font-weight:400;transition:transform .25s var(--vd-ease)}
+.vdaby-uiverse-button:hover .vdaby-button-label b{transform:translate(3px,-2px)}
+.vdaby-real-button:focus-visible~.vdaby-button-shell{
+  outline:2px solid var(--vd-gold-soft);
+  outline-offset:4px;
+}
+@keyframes vdaby-button-speen{0%{transform:rotate(10deg)}50%{transform:rotate(190deg)}to{transform:rotate(370deg)}}
+@keyframes vdaby-button-woah{0%,to{scale:1}50%{scale:.75}}
+
+/* Orbital stage */
+.vdaby-method-universe .vdaby-situation-stage{
+  min-width:0;
+  width:min(100%,600px);
+  max-width:600px;
+  justify-self:end;
+  isolation:isolate;
+}
+.vdaby-method-universe .vdaby-situation-ring{
+  width:68%;height:68%;
+  border-color:rgba(234,213,139,.24);
+}
+.vdaby-method-universe .vdaby-situation-ring-inner{
+  width:46%;height:46%;
+  border:1px solid rgba(50,214,255,.12);
+  box-shadow:none;
+  animation:vdaby-orbit-spin 38s linear infinite reverse;
+}
+.vdaby-method-universe .vdaby-situation-core{
+  width:28%;
+  background:
+    radial-gradient(circle at 35% 25%,rgba(255,255,255,.13),transparent 25%),
+    radial-gradient(circle,rgba(212,175,55,.13),rgba(7,17,31,.98) 68%);
+  box-shadow:0 0 0 1px rgba(212,175,55,.08),0 20px 70px rgba(0,0,0,.38),0 0 80px rgba(212,175,55,.08);
+}
+.vdaby-method-universe .vdaby-situation-items{
+  animation:none!important;
+}
+.vdaby-method-universe .vdaby-situation-item{
+  --orbit-size:clamp(142px,18vw,184px);
+  width:154px;
+  min-height:100px;
+  padding:13px 14px;
+  background:linear-gradient(145deg,rgba(15,31,50,.95),rgba(7,17,31,.9));
+  box-shadow:0 12px 38px rgba(0,0,0,.18);
+  animation:vdaby-readable-orbit 38s linear infinite;
+  animation-delay:calc(var(--i) * -6.333333s);
+}
+.vdaby-method-universe .vdaby-situation-item:hover,
+.vdaby-method-universe .vdaby-situation-item:focus-visible,
+.vdaby-method-universe .vdaby-situation-item.is-active{
+  border-color:rgba(212,175,55,.72);
+  background:linear-gradient(145deg,rgba(25,42,62,.98),rgba(8,19,33,.97));
+  box-shadow:0 0 0 1px rgba(212,175,55,.12),0 20px 55px rgba(0,0,0,.35),0 0 35px rgba(212,175,55,.08);
+}
+.vdaby-method-universe .vdaby-situation-item.is-active{
+  z-index:9;
+}
+.vdaby-method-universe .vdaby-situation-stage.is-paused .vdaby-situation-item{
+  animation-play-state:paused;
+}
+.vdaby-method-universe .vdaby-situation-stage.is-paused .vdaby-situation-item.is-active{
+  animation:none;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%) scale(1.12);
+}
+.vdaby-method-universe .vdaby-situation-stage.is-paused .vdaby-situation-item.is-active span{
+  color:var(--vd-gold-soft);
+}
+.vdaby-method-universe .vdaby-situation-item::after{
+  content:"";
+  position:absolute;
+  width:6px;height:6px;
+  right:11px;top:11px;
+  border-radius:50%;
+  background:rgba(212,175,55,.55);
+  box-shadow:0 0 12px rgba(212,175,55,.45);
+  opacity:.35;
+}
+.vdaby-method-universe .vdaby-situation-item.is-active::after{opacity:1}
+
+@media(max-width:1000px){
+  .vdaby-method-universe{grid-template-columns:1fr}
+  .vdaby-method-universe .vdaby-situation-stage{justify-self:center}
+  .vdaby-orbit-story{max-width:760px}
+}
+@media(max-width:620px){
+  .vdaby-method-universe{
+    margin:48px 12px 76px;
+    padding:24px 16px 30px;
+    border-radius:25px;
+    display:block;
+  }
+  .vdaby-orbit-detail{grid-template-columns:72px 1fr;margin-top:20px}
+  .vdaby-orbit-detail-media{width:72px;height:62px}
+  .vdaby-uiverse-button{width:100%;max-width:220px;height:56px}
+  .vdaby-method-universe .vdaby-situation-stage{
+    min-width:0;
+    width:100%;
+    max-width:390px;
+    aspect-ratio:1;
+    left:auto;
+    transform:none;
+    margin:30px auto 0;
+  }
+  .vdaby-method-universe .vdaby-situation-item{
+    --orbit-size:clamp(104px,30vw,128px);
+    width:116px;
+    min-height:86px;
+    padding:10px;
+    border-radius:14px;
+  }
+  .vdaby-method-universe .vdaby-situation-item strong{font-size:12px}
+  .vdaby-method-universe .vdaby-situation-item small{font-size:9px}
+  .vdaby-method-universe .vdaby-situation-core{width:29%}
+  .vdaby-method-universe .vdaby-situation-stage.is-paused .vdaby-situation-item.is-active{
+    transform:translate(-50%,-50%) scale(1.06);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .vdaby-method-universe .vdaby-situation-ring,
+  .vdaby-method-universe .vdaby-situation-ring-inner,
+  .vdaby-method-universe .vdaby-situation-item,
+  .vdaby-spin::before{animation:none!important}
+  .vdaby-method-universe .vdaby-situation-stage.is-paused .vdaby-situation-item.is-active{
+    transform:translate(-50%,-50%);
+  }
+  .vdaby-uiverse-button{transition:none}
+}
+
+/* =========================================================
+   VDABY EXPERIENCE v1.5 — 3-situation orbit + language practice
+   Surgical/additive: existing application styles remain untouched.
+   ========================================================= */
+.vdaby-situation-orbit{grid-template-columns:minmax(300px,.86fr) minmax(440px,1.14fr)}
+.vdaby-situation-item{width:158px;min-height:112px;padding:16px 15px;text-align:left;display:block}
+.vdaby-situation-item svg{display:block;width:31px;height:31px;margin-bottom:8px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;color:var(--vd-gold-soft);filter:drop-shadow(0 0 9px rgba(212,175,55,.16))}
+.vdaby-situation-item span{position:absolute;right:13px;top:12px}
+.vdaby-situation-item strong{max-width:118px;line-height:1.12}
+.vdaby-situation-item small{display:none}
+.vdaby-situation-core{width:29%;box-shadow:0 0 0 12px rgba(212,175,55,.035),0 15px 50px rgba(0,0,0,.3)}
+.vdaby-situation-ring{width:74%;height:74%}
+.vdaby-situation-ring-inner{width:48%;height:48%;border-color:rgba(50,214,255,.10)!important;animation-duration:20s!important;animation-direction:reverse}
+@media(max-width:900px){.vdaby-situation-orbit{grid-template-columns:1fr}.vdaby-situation-stage{max-width:560px}}
+@media(max-width:620px){.vdaby-situation-stage{min-width:390px}.vdaby-situation-item{--orbit-size:145px;width:138px;min-height:102px}.vdaby-situation-item strong{font-size:13px}.vdaby-situation-core{width:31%}}
+
+/* Language Lab — phrases behave like reusable LEGO blocks. */
+.vdaby-language-lab,.vdaby-pressure-lab{max-width:1200px;margin:clamp(58px,9vw,118px) auto;padding:clamp(28px,4.5vw,58px);border-top:1px solid var(--vd-line);border-bottom:1px solid var(--vd-line);position:relative;overflow:hidden}
+.vdaby-language-head,.vdaby-pressure-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:30px}
+.vdaby-language-head>div:first-child,.vdaby-pressure-head>div:first-child{max-width:760px}
+.vdaby-language-head h2,.vdaby-pressure-head h2{font-size:clamp(30px,4.5vw,58px);line-height:.98;letter-spacing:-.05em;margin:.42em 0}
+.vdaby-language-head p,.vdaby-pressure-head p{max-width:720px;color:var(--vd-muted);line-height:1.7;margin:0}
+.vdaby-language-key{display:flex;gap:9px;align-items:center;flex-wrap:wrap;justify-content:flex-end;font-size:8px;letter-spacing:.14em;color:var(--vd-muted);white-space:nowrap}
+.vdaby-language-key span:first-child{color:var(--vd-gold-soft)}
+.vdaby-phrase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.vdaby-phrase-card{position:relative;min-height:240px;padding:22px;text-align:left;border:1px solid var(--vd-line);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.015));color:var(--vd-text);font:inherit;cursor:pointer;overflow:hidden;transition:transform .35s var(--vd-ease),border-color .25s,background .25s,box-shadow .35s}
+.vdaby-phrase-card::after{content:"";position:absolute;width:130px;height:130px;right:-70px;bottom:-70px;border-radius:50%;border:1px solid rgba(212,175,55,.13);box-shadow:0 0 0 24px rgba(212,175,55,.025)}
+.vdaby-phrase-card:hover,.vdaby-phrase-card.is-open{transform:translateY(-5px);border-color:rgba(212,175,55,.48);background:linear-gradient(145deg,rgba(212,175,55,.075),rgba(255,255,255,.02));box-shadow:0 24px 65px rgba(0,0,0,.2)}
+.vdaby-phrase-index{display:inline-block;font-size:9px;letter-spacing:.18em;color:var(--vd-gold-soft)}
+.vdaby-phrase-function{display:block;margin-top:24px;font-size:9px;letter-spacing:.18em;color:var(--vd-muted)}
+.vdaby-phrase-card>strong{display:block;margin-top:10px;font-size:clamp(16px,1.5vw,20px);line-height:1.3;letter-spacing:-.02em}
+.vdaby-phrase-body{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .4s var(--vd-ease),opacity .3s;margin-top:0;overflow:hidden}
+.vdaby-phrase-body>*{min-height:0}
+.vdaby-phrase-card.is-open .vdaby-phrase-body{grid-template-rows:1fr;opacity:1;margin-top:15px}
+.vdaby-phrase-body small{display:block;color:var(--vd-muted);font-size:11px;line-height:1.5;padding-top:2px}
+.vdaby-phrase-body em{display:block;margin-top:10px;padding:10px 11px;border-left:2px solid var(--vd-gold);background:rgba(255,255,255,.035);font-size:11px;line-height:1.5;color:#f4f7fb;font-style:normal}
+.vdaby-phrase-body b{display:block;margin-top:12px;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--vd-gold-soft)}
+
+/* Pressure Lab — scenario → response → adaptation. */
+.vdaby-pressure-lab{background:linear-gradient(180deg,rgba(13,27,44,.28),transparent)}
+.vdaby-pressure-meter{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;font-size:8px;letter-spacing:.15em;color:var(--vd-muted)}
+.vdaby-pressure-meter i{display:block;width:22px;height:1px;background:linear-gradient(90deg,var(--vd-gold),rgba(212,175,55,.1))}
+.vdaby-pressure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.vdaby-pressure-card{position:relative;padding:24px;border:1px solid var(--vd-line);border-radius:20px;background:rgba(7,17,31,.42);min-height:350px;transition:border-color .3s,transform .35s var(--vd-ease),box-shadow .35s}
+.vdaby-pressure-card:hover,.vdaby-pressure-card.is-current{border-color:rgba(212,175,55,.44);transform:translateY(-4px);box-shadow:0 25px 70px rgba(0,0,0,.22)}
+.vdaby-pressure-index{font-size:9px;letter-spacing:.18em;color:var(--vd-gold-soft)}
+.vdaby-pressure-trigger{margin-top:22px;font-size:18px;font-weight:600;letter-spacing:-.02em}
+.vdaby-pressure-card p{font-size:11px;line-height:1.5;color:var(--vd-muted);min-height:48px}
+.vdaby-pressure-card blockquote{margin:18px 0 0;padding:15px;border-left:2px solid var(--vd-gold);background:rgba(212,175,55,.055);font-size:15px;line-height:1.5;color:#f5f7fa}
+.vdaby-pressure-card>small{display:block;margin-top:14px;color:var(--vd-muted);font-size:10px;line-height:1.45}
+.vdaby-pressure-toggle{margin-top:20px;border:0;background:none;color:var(--vd-gold-soft);font:inherit;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:7px 0}
+.vdaby-pressure-toggle span{display:inline-block;margin-left:6px;font-size:16px;vertical-align:-1px}
+.vdaby-pressure-note{margin-top:18px;padding:21px 23px;border:1px solid rgba(212,175,55,.2);border-radius:18px;background:rgba(212,175,55,.035);display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center}
+.vdaby-pressure-note span{font-size:8px;letter-spacing:.18em;color:var(--vd-gold-soft)}
+.vdaby-pressure-note strong{font-size:15px;letter-spacing:-.01em}
+.vdaby-pressure-note p{margin:0;color:var(--vd-muted);font-size:10px}
+@media(max-width:900px){.vdaby-phrase-grid,.vdaby-pressure-grid{grid-template-columns:1fr 1fr}.vdaby-language-head,.vdaby-pressure-head{display:block}.vdaby-language-key,.vdaby-pressure-meter{justify-content:flex-start;margin-top:20px}.vdaby-pressure-note{grid-template-columns:1fr}}
+@media(max-width:620px){.vdaby-language-lab,.vdaby-pressure-lab{padding:25px 18px}.vdaby-phrase-grid,.vdaby-pressure-grid{grid-template-columns:1fr}.vdaby-phrase-card{min-height:205px}.vdaby-pressure-card{min-height:0}.vdaby-situation-orbit{padding:24px 18px}.vdaby-orbit-detail{grid-template-columns:72px 1fr}.vdaby-orbit-detail-media{width:72px;height:64px}}
+@media(prefers-reduced-motion:reduce){.vdaby-phrase-card:hover,.vdaby-phrase-card.is-open,.vdaby-pressure-card:hover,.vdaby-pressure-card.is-current{transform:none}.vdaby-phrase-body{transition:none}}
+
+
+/* =========================================================
+   VDABY VISUAL STORY PACK v1.0 — additive
+   ========================================================= */
+.vdaby-visual-story{position:relative;margin:clamp(44px,7vw,96px) auto;max-width:1280px;padding:0 24px}
+.vdaby-visual-story-head{max-width:780px;margin-bottom:28px}
+.vdaby-visual-story-head .vdaby-universe-kicker{margin-bottom:10px}
+.vdaby-visual-story-head h2{font-size:clamp(28px,4vw,52px);line-height:1.02;letter-spacing:-.04em;margin:0 0 14px}
+.vdaby-visual-story-head p{color:var(--vd-muted);max-width:680px;line-height:1.65;margin:0}
+.vdaby-visual-frame{position:relative;overflow:hidden;border:1px solid var(--vd-line);border-radius:28px;background:rgba(255,255,255,.02);box-shadow:0 28px 90px rgba(0,0,0,.24)}
+.vdaby-visual-frame img{display:block;width:100%;height:auto;max-height:720px;object-fit:cover}
+.vdaby-visual-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 38%,rgba(50,214,255,.025));mix-blend-mode:screen}
+.vdaby-visual-badge{display:inline-flex;align-items:center;gap:9px;margin-top:14px;padding:8px 12px;border:1px solid var(--vd-line);border-radius:999px;color:var(--vd-muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.vdaby-visual-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--vd-cyan);box-shadow:0 0 14px var(--vd-cyan)}
+.daby-signature-svg{width:min(520px,80vw);height:auto;display:block}
+.daby-signature-wrap .daby-signature{display:none}
+.daby-signature-wrap .daby-signature-line,.daby-signature-wrap .daby-signature-caption{display:none}
+@media(max-width:620px){.vdaby-visual-story{padding:0 16px}.vdaby-visual-frame{border-radius:20px}.daby-signature-svg{width:min(420px,88vw)}}
+
+
+/* ==== v1.2 (2026-09-21) — production hardening ================================ */
+[hidden]{display:none!important}
+.vdaby-orbit,.vdaby-orbit-toggle,.vdaby-orbit-items,.vdaby-orbit-label{display:none!important}
+.skip-link{position:absolute;left:12px;top:-64px;z-index:2147483000;padding:12px 18px;border-radius:10px;background:#d8ab4d;color:#07111f;font:700 14px/1 Manrope,Arial,sans-serif;text-decoration:none;transition:top .18s ease}
+.skip-link:focus{top:12px;outline:3px solid #fff}
+:where(a,button,input,textarea,select,[tabindex]):focus-visible{outline:2px solid #d8ab4d;outline-offset:3px;border-radius:6px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.mobile-nav{animation:vdaby-menu-in .22s ease both}
+@keyframes vdaby-menu-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.form-success{display:flex;gap:8px;align-items:center;margin-top:12px}
+.recommendation-track{will-change:transform}
+.recommendation-slide[aria-hidden="true"]{pointer-events:none}
+@media (max-width:700px){.floating-contacts{bottom:max(14px,env(safe-area-inset-bottom))}}
+@media print{.topbar,.floating-contacts,.vdaby-progress{display:none!important}}
+
+/* ==== v1.3 (2026-09-22) — credibility stats ==================================== */
+.hero-stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:22px;padding-top:22px;border-top:1px solid var(--vd-line)}
+.hero-stat{display:flex;flex-direction:column;gap:2px}
+.hero-stat strong{font-size:clamp(20px,2.4vw,26px);font-weight:700;letter-spacing:-.02em;color:var(--vd-text);line-height:1}
+.hero-stat span{font-size:12px;letter-spacing:.03em;color:var(--vd-muted)}
+@media (max-width:620px){.hero-stats{gap:20px}}
+
+.statement-aim{display:flex;align-items:flex-start;gap:10px;margin:16px 0;padding:14px 16px;border:1px solid var(--vd-line);border-radius:14px;background:rgba(255,255,255,.02);color:var(--vd-text);font-size:14px;line-height:1.55}
+.statement-aim strong{color:var(--vd-gold-soft);font-weight:700}
+
+.method-tagline{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin:4px 0 22px;padding:0;font-size:13px;letter-spacing:.02em;color:var(--vd-muted)}
+.method-tagline b{color:var(--vd-text);font-weight:700}
+.method-tagline .tagline-divider{color:var(--vd-line-strong)}
+.method-tagline .tagline-promise{color:var(--vd-gold-soft);font-weight:700}
+
+.linkedin-stat{display:inline-flex;align-items:baseline;gap:8px;margin:2px 0 4px;font-size:13px;color:var(--vd-muted);letter-spacing:.02em}
+.linkedin-stat strong{font-size:20px;font-weight:700;color:var(--vd-text);letter-spacing:-.01em}
+
+.detail-hero-stats{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 20px}
+.detail-hero-stats span{display:inline-flex;align-items:baseline;gap:6px;padding:8px 14px;border:1px solid var(--vd-line);border-radius:999px;font-size:12.5px;color:var(--vd-muted);letter-spacing:.02em}
+.detail-hero-stats span b{color:var(--vd-text);font-weight:700;font-size:14px}

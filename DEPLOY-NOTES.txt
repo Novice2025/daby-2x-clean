@@ -1,0 +1,52 @@
+VDABY.COM — FINAL DEPLOYMENT (2026-09-21)
+Upload the contents of this zip to public_html/ keeping the folder structure. Overwrite when asked.
+No visible wording was changed anywhere.
+
+WHAT WAS FIXED
+ 1. Literal "\n" text at the top of 6 pages -> removed (all pages re-checked).
+ 2. One canonical host everywhere: https://vdaby.com/<page>/ (canonical, og:url, JSON-LD, sitemap, hreflang).
+    Before: pages said www.vdaby.com/<page> while sitemap/llms said vdaby.com/<page>/.
+ 3. Home is now real static HTML (was a React app with almost no text without JavaScript).
+    The hero/H1 is first again (two injected blocks used to push it below the fold), all 4 FAQ answers
+    and all 3 recommendations are in the HTML, and FAQPage structured data was added.
+ 4. Dead controls on the static pages now work again: mobile menu, WhatsApp form (same message text as
+    before), FAQ accordion, recommendations carousel  -> assets/daby-site.js
+ 5. Floating "D" orbit launcher (overlapped WhatsApp/LinkedIn buttons) removed.
+ 6. Broken image on /seo-geo/ (src="//assets/...") fixed.
+ 7. Speed: images were 3–4 MB each (logo 2.8 MB, loaded on every page). Optimized copies live in
+    assets/img/ (logo 6 KB, photos 9–76 KB WebP with srcset, social image 46 KB). Home HTML 375 KB -> 53 KB.
+    Fonts are preconnected, splash screen shows once per session and hides by itself even without JS.
+ 8. SEO/AI: robots meta with max-snippet/max-image-preview, richer Organization/Person/WebSite/BlogPosting
+    JSON-LD, BreadcrumbList on every inner page, FAQPage on home, hreflang, social image 1200x630,
+    image sitemap, llms.txt (llmstxt.org format) + llms-full.txt (verbatim text of every page).
+    robots.txt: ONE shared group for Google, Bing and all AI crawlers so the Disallow lines
+    (/learning/admin.php, /EePL/...) also apply to them (a separate bot group would ignore them).
+ 9. Accessibility: skip link, visible focus ring, reduced-motion support, aria on menu/FAQ/carousel, 404 restyled.
+
+DO THESE 4 THINGS AFTER UPLOADING
+ A. Add this at the TOP of your existing .htaccess (do not replace the file; /learning/ keeps working):
+      RewriteEngine On
+      RewriteCond %{HTTP_HOST} ^www\.vdaby\.com$ [NC]
+      RewriteRule ^(.*)$ https://vdaby.com/$1 [R=301,L]
+      RewriteCond %{HTTPS} off
+      RewriteRule ^(.*)$ https://vdaby.com/$1 [R=301,L]
+    Optional (browser caching for the new assets):
+      <IfModule mod_expires.c>
+        ExpiresActive On
+        ExpiresByType image/webp "access plus 1 year"
+        ExpiresByType image/png  "access plus 1 year"
+        ExpiresByType image/jpeg "access plus 1 year"
+        ExpiresByType text/css   "access plus 1 month"
+        ExpiresByType application/javascript "access plus 1 month"
+      </IfModule>
+ B. Delete internal notes that are publicly readable on the server:
+      README.md, STATIC-CONVERSION-REPORT.md, UPLOAD-THIS-PACKAGE.txt, FACELIFT-README.txt,
+      README-2030-FACELIFT.txt, README-SURGICAL-PATCH-2030.3.txt, README-UPGRADE.txt,
+      README-VISUAL-UPGRADE.txt, VDABY-EXPERIENCE-LAYER-README.txt, LEARNING_CANONICAL_REPLACEMENTS.txt
+ C. Google Search Console: add/verify https://vdaby.com , submit https://vdaby.com/sitemap.xml,
+    then "Request indexing" for the home, /metodo/, /corporate/ and the 3 blog articles.
+    Bing Webmaster Tools: import from Search Console (Bing feeds ChatGPT search, Copilot and DuckDuckGo).
+ D. Open https://vdaby.com/llms.txt and https://vdaby.com/robots.txt once to confirm they load.
+
+KEPT AS-IS (not touched): all visible wording, /learning/, /EePL/, the Manus analytics tag on the home page,
+legacy redirect pages (blog.html, metodo.html ...), index.php.

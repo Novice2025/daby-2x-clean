@@ -1,0 +1,19 @@
+VDABY MULTI-PAGE WEBSITE — UPLOAD PACKAGE
+
+Upload/extract the contents of this ZIP directly into the domain document root:
+public_html/
+
+This package restores the multi-page navigation:
+/                -> main landing page
+/metodo/         -> Método
+/corporate/      -> Empresas
+/blog/           -> Blog
+/linkedin/       -> LinkedIn
+/seo-geo/        -> Real-World Communication / SEO-GEO
+/ai-discovery/   -> AI Discovery / official reference
+
+IMPORTANT:
+- Do not delete .well-known.
+- Do not delete .git until Git deployment has been checked.
+- Do not touch unrelated application folders such as memory, interview, neulicoach, learning, or show.
+- Extract/overwrite only the website files included in this package.
